@@ -161,3 +161,41 @@ background: linear-gradient(90deg, rgb(205, 224, 237) 0%, rgb(203, 223, 236) 30%
     align-items: flex-start; 
     justify-content: space-between; 
 }
+.chars{
+    display: flex;
+    align-items: flex-start; 
+    justify-content: space-between; 
+}
+
+/* Hide the button initially */
+.dc-btn {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px); /* Start from 20px below */
+    transition: all 0.1s ease-in-out; /* Smooth transition */
+    background-color: #3FABF3; /* Styling for the button */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Show the button on hover with slide-up effect */
+.item:hover .dc-btn {
+    display: inline-block;
+    opacity: 1;
+    transform: translateY(0); /* Slide up into view */
+}
+
+/* Additional styles to make the transition smoother */
+.item {
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.dc-btn:hover {
+    background-color: #2f92da; /* Slightly darker on hover */
+}
