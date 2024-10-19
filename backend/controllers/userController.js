@@ -212,7 +212,7 @@ const listAllAppointments = async (req, res) => {
 
 
 // -----------cancel appointment
-const cancelAppointmenst = async (req, res) => {
+const cancelAppointments = async (req, res) => {
     try {
         
         const { userId, appointmentId } = req.body;
@@ -244,4 +244,4 @@ const cancelAppointmenst = async (req, res) => {
 }
 
 
-export {loginUser, registerUser, getProfile, updateProfile, bookAppointment, cancelAppointmenst, listAllAppointments};
+export {loginUser, registerUser, getProfile, updateProfile, bookAppointment, cancelAppointments, listAllAppointments};

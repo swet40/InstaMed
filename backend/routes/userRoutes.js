@@ -1,4 +1,4 @@
-import { loginUser, registerUser, getProfile, updateProfile, bookAppointment, listAllAppointments, cancelAppointmenst} from "../controllers/userController.js";
+import { loginUser, registerUser, getProfile, updateProfile, bookAppointment, listAllAppointments, cancelAppointments} from "../controllers/userController.js";
 import express from "express"
 import userAuth from "../middlewares/userAuth.js";
 import upload from "../middlewares/multer.js";
@@ -23,7 +23,7 @@ userRouter.post("/book-appo",userAuth, bookAppointment);
 
 userRouter.get("/all-appo", userAuth, listAllAppointments);
 
-userRouter.post("/cancel-appo",userAuth, cancelAppointmenst);
+userRouter.post("/cancel-appo",userAuth, cancelAppointments);
 
 
 export default userRouter

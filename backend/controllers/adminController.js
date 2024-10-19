@@ -3,6 +3,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"; 
 import doctorModel from "../models/doctorModel.js";
 import {v2 as cloudinary} from "cloudinary";
+import appointmentModel from "../models/appointmentModel.js";
+import userModel from "../models/userModel.js";
 
 
 // -------------------ROUTE FOR ADMIN LOGIN-------------------------
@@ -90,4 +92,75 @@ const allDoctors = async (req, res) => {
 
 }
 
-export {createDoctor, adminLogin, allDoctors}
+
+const appointmentsAdmin = async (req, res) => {
+  try {
+    
+    const appointments = await appointmentModel.find({})
+    res.json({success: true, appointments})
+
+  } catch (e) {
+    console.log(e)
+    res.json({success: false, message: e.message})
+  }
+}
+
+
+
+const cancelAppo = async (req, res) => {
+  try {
+      
+      const { appointmentId } = req.body;
+
+      const appointmentData = await appointmentModel.findById(appointmentId)
+
+
+      await appointmentModel.findByIdAndUpdate(appointmentId, { cancelled: true } )
+
+      // as the appointment is cancelled here changing doctor slots_booked
+
+      const {docId, slotDate, slotTime } = appointmentData;
+      const doctorData = await doctorModel.findById(docId)
+
+      let slots_booked = doctorData.slots_booked
+
+      slots_booked[slotDate] = slots_booked[slotDate].filter(e => e !== slotTime)
+
+      await doctorModel.findByIdAndUpdate(docId, { slots_booked})
+      res.json({success: true, message:"appointment cancelled"})
+
+  } catch (e) {
+      console.log(e)
+      return res.json({success: false, message: e.message})
+  }
+}
+
+// ==================dasboard data for admin panel=================
+const adminDash = async (req, res) => {
+  try {
+    
+    const doctors = await doctorModel.find({})
+    const users  = await userModel.find({})
+    const appointments = await appointmentModel.find({})
+
+    const dashData = {
+      doctors: doctors.length,
+      appointments: appointments.length,
+      patients: users.length,
+      latestAppointments: appointments.reverse().slice(0,5),
+    }
+
+
+    res.json({success: true}, dashData)
+    
+  } catch (e) {
+    console.log(e)
+    res.json({success: false, message: e.message})
+  }
+}
+
+
+
+
+
+export {createDoctor, adminLogin, allDoctors, appointmentsAdmin, cancelAppo, adminDash}
