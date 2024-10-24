@@ -165,37 +165,117 @@ background: linear-gradient(90deg, rgb(205, 224, 237) 0%, rgb(203, 223, 236) 30%
     display: flex;
     align-items: flex-start; 
     justify-content: space-between; 
+    margin-bottom: 30px;
 }
 
-/* Hide the button initially */
+/* Style for the button */
 .dc-btn {
     display: none;
     opacity: 0;
-    transform: translateY(20px); /* Start from 20px below */
-    transition: all 0.1s ease-in-out; /* Smooth transition */
-    background-color: #3FABF3; /* Styling for the button */
+    transform: translateY(30px); 
+    transition: all 0.4s ease-in-out;
+    background-color: #3FABF3;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
+    margin-top: 5px;
+    position: relative;
 }
 
-/* Show the button on hover with slide-up effect */
+/* Style for the text */
+h3 {
+    transition: all 0.4s ease-in-out;
+    transform: translateY(0); 
+}
+
+
+.item:hover h3 {
+    transform: translateY(-40px); 
+}
+
+
 .item:hover .dc-btn {
     display: inline-block;
     opacity: 1;
-    transform: translateY(0); /* Slide up into view */
+    transform: translateY(0); 
 }
 
-/* Additional styles to make the transition smoother */
+
 .item {
     position: relative;
     overflow: hidden;
     padding: 20px;
+    min-height: 100px; 
 }
 
 .dc-btn:hover {
-    background-color: #2f92da; /* Slightly darker on hover */
+    background-color: #2f92da; 
 }
+
+.dc-sectiontitle, .dc-description {
+    text-align: center; 
+    width: 100%; 
+    margin: 0 auto;
+    padding: 20px 0; 
+}
+
+.dc-sectiontitle h2 {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.dc-sectiontitle span {
+    color: #fe5952; 
+}
+
+.dc-description p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+
+.main-desc {
+    background-color: #e8f6ff;
+}
+
+.work-title{
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.work {
+    background-color: #fff;
+    border: 2px solid rgb(192, 191, 191);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    padding: 20px;
+    margin: 10px;
+}
+
+.work:hover {
+    transform: translateY(-5px); /* Adds a hover effect */
+}
+
+.work i {
+    color: black; /* Dark purple for icons */
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.work h4 {
+    color: #6a0dad;
+    margin-top: 15px;
+}
+
+.work p {
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
