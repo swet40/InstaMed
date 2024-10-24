@@ -10,8 +10,8 @@ body {
     background-color: #ffffff;
 }
 html, body {
-  height: 100%; /* Ensures that body takes full height */
-  overflow-y: auto; /* Ensures vertical scrolling */
+  height: 100%; 
+  overflow-y: auto; 
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
@@ -26,7 +26,7 @@ html, body {
     background: rgb(204,213,219);
 background: linear-gradient(90deg, rgb(205, 224, 237) 0%, rgb(203, 223, 236) 30%, rgba(211,233,246,1) 70%);
     padding-top: 120px; 
-    height: 86vh;
+    height: 84vh;
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;  
 }
@@ -254,15 +254,18 @@ h3 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
     padding: 20px;
-    margin: 10px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .work:hover {
-    transform: translateY(-5px); /* Adds a hover effect */
+    transform: translateY(-5px); 
 }
 
 .work i {
-    color: black; /* Dark purple for icons */
+    color: black; 
     display: block;
     margin-bottom: 10px;
     text-align: center;
@@ -279,3 +282,46 @@ h3 {
     margin-bottom: 0;
 }
 
+.spec {
+    margin-top: 30px;
+    text-align: center;
+    color: #3d4461;
+}
+
+.spec h2 {
+    color: #fe5952;
+    margin-bottom: 20px;
+}
+
+.spec p {
+    max-width: 500px;
+    /* margin: 0 auto; */
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+.doctors-row {
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    gap: 1rem; 
+}
+
+.card {
+    flex: 1 1 18rem; 
+    border: 1px solid black;
+    width: 200px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center; 
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+.card img{
+    height: 200px;
+    width: 200px;
+    align-items: center !important;
+    object-fit: cover;
+}
