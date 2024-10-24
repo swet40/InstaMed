@@ -307,21 +307,158 @@ h3 {
 }
 
 .card {
-    flex: 1 1 18rem; 
-    border: 1px solid black;
-    width: 200px;
+    border: 1px solid #007bff;
+    cursor: pointer;
+    max-width: 220px;
     display: flex;
     flex-direction: column; 
     align-items: center;    
-    justify-content: center; 
-    border-radius: 5px;
-    margin-top: 30px;
-    margin-left: 10px;
-    margin-bottom: 20px;
+    justify-content: space-around; 
+    border-radius: 15px;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.card:hover {
+    box-shadow: 0 4px 4px #007bff;
+    transition: transform 0.2s ease-in-out;
+}
+.card p, h2, h5, h6 {
+    margin: 0;
+    padding: 0;
 }
 .card img{
     height: 200px;
     width: 200px;
     align-items: center !important;
     object-fit: cover;
+}
+
+.query-help {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    /* border: 1px solid #e6e6e6; */
+    border-radius: 10px;
+}
+
+.query-help h1 {
+    font-size: 2.5rem;
+    color: #ff5a5a;
+    margin-bottom: 10px;
+}
+
+.query-help h2 {
+    font-size: 1.8rem;
+    color: #3d4461;
+    margin-bottom: 10px;
+}
+
+.query-help p {
+    font-size: 1rem;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+.title-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.question-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+.ask-query-btn {
+    background-color: white;
+    color: #007bff;
+    padding: 10px 20px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.ask-query-btn:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.card-body {
+    text-align: left;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2a7ebc;
+    margin-bottom: 5px;
+}
+
+.doctor-name {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 5px;
+}
+
+.doctor-details {
+    font-size: 1rem;
+    color: #666666;
+    margin-bottom: 10px;
+}
+
+.feedback {
+    font-size: 0.9rem;
+    color: #666666;
+    margin-bottom: 10px;
+}
+
+.stars {
+    color: #ffcc00;
+}
+
+.available-day, .location, .availability {
+    font-size: 0.9rem;
+    color: #666666;
+    margin-bottom: 5px;
+}
+
+.location i{
+    color: red;
+}
+
+.availability {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.doctors-row {
+    display: flex;
+    flex-wrap: wrap;  
+    gap: 20px;  
+    justify-content: flex-start;  
+    padding: 0;  
+    margin-left: 270px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
