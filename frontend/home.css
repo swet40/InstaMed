@@ -282,22 +282,19 @@ h3 {
     margin-bottom: 0;
 }
 
-.spec {
-    margin-top: 30px;
+.specialist {
     text-align: center;
+    padding: 0;
+}
+.specialist p{
+    margin: 0;
     color: #3d4461;
+    font-size: 20px;
 }
-
-.spec h2 {
+.specialist h1{
     color: #fe5952;
-    margin-bottom: 20px;
-}
-
-.spec p {
-    max-width: 500px;
-    /* margin: 0 auto; */
-    font-size: 1.2rem;
-    line-height: 1.6;
+    margin: 0;
+    font-size: 40px;
 }
 .doctors-row {
     display: flex;
