@@ -5,7 +5,6 @@ import upload from "../middlewares/multer.js";
 
 const userRouter = express.Router();
 
-// --------patient's route----------
 userRouter.post("/login", loginUser);
 
 userRouter.post("/register", registerUser);
