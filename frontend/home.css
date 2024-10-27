@@ -8,10 +8,13 @@ body {
     font-family: 'Poppins', sans-serif;
     color: black;
     background-color: #ffffff;
+    overflow-x: hidden;
 }
+
 html, body {
     height: 100%; 
     overflow-y: auto; 
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
@@ -26,7 +29,7 @@ html, body {
     background: rgb(204,213,219);
 background: linear-gradient(90deg, rgb(205, 224, 237) 0%, rgb(203, 223, 236) 30%, rgba(211,233,246,1) 70%);
     padding-top: 120px; 
-    height: 84vh;
+    height: 70vh;
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;  
 }
@@ -38,7 +41,7 @@ background: linear-gradient(90deg, rgb(205, 224, 237) 0%, rgb(203, 223, 236) 30%
     justify-content: flex-end;
     display: block;
     margin-right: 370px;
-    margin-top: 100px;
+    margin-top: 80px;
 }
 .hero-content h3{
     color: #3d4461;
@@ -74,9 +77,9 @@ background: linear-gradient(90deg, rgb(205, 224, 237) 0%, rgb(203, 223, 236) 30%
 }
 .pic img{
     /* width: 35%;*/
-    height: 60vh;
+    height: 50vh;
     /* border-radius: 8px; */
-    margin-top: 15px;
+    margin-top: 5px;
     margin-left: 250px;
     
 }

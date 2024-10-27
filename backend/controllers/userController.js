@@ -104,10 +104,10 @@ const getProfile = async (req, res) => {
 // ---------------update user profile-------------
 const updateProfile = async (req, res) => {
   try {
-    const { userId, name, phone, address, dob } = req.body;
+    const { userId, name, phone, address, dob, about } = req.body;
     const imageFile = req.file;
 
-    if (!name || !phone || !dob) {
+    if (!name || !phone || !dob || !about) {
       return res.json({ success: false, message: "data missing" });
     }
 
@@ -116,6 +116,7 @@ const updateProfile = async (req, res) => {
       phone,
       address: JSON.parse(address),
       dob,
+      about,
     });
 
     if (imageFile) {

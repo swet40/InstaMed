@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-mC3ioX+R/mDgI3ESwMmwG52W1XJRRf7ufD/Fm7VQpC9jp23p6kzCM/D2qwO5eT3c" crossorigin="anonymous">
+    <link rel="stylesheet" href="allDocs.css">
+    <title>admin</title>
+</head>
+<body>
+    <header id="navbar-placeholder"></header>
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <div class="filter-sidebar">
+                <button class="btn btn-outline-secondary w-100">General Physician</button>
+                <button class="btn btn-outline-secondary w-100">Gynecologist</button>
+                <button class="btn btn-outline-secondary w-100">Dermatologist</button>
+                <button class="btn btn-outline-secondary w-100">Pediatrician</button>
+                <button class="btn btn-outline-secondary w-100">Neurologist</button>
+                <button class="btn btn-outline-secondary w-100">Gastroenterologist</button>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="/images/doc-1.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="doctor-name">Dr. Richard James</h5>
+                            <p class="card-title">General Physician</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="/images/doc-2.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="doctor-name">Dr. Richard James</h5>
+                            <p class="card-title">General Physician</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="/images/doc-3.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="doctor-name">Dr. Richard James</h5>
+                            <p class="card-title">General Physician</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="/images/doc-4.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="doctor-name">Dr. Richard James</h5>
+                            <p class="card-title">General Physician</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="/images/doc-1.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="doctor-name">Dr. Richard James</h5>
+                            <p class="card-title">General Physician</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="/images/doc-2.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="doctor-name">Dr. Richard James</h5>
+                            <p class="card-title">General Physician</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="/images/doc-3.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="doctor-name">Dr. Richard James</h5>
+                            <p class="card-title">General Physician</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <img src="/images/doc-4.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="doctor-name">Dr. Richard James</h5>
+                            <p class="card-title">General Physician</p>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+</div>
+    <script>
+        fetch('../includes/navbar.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('navbar-placeholder').innerHTML = data;
+    
+                        const hamburger = document.getElementById("hamburger");
+                        const navLinks = document.getElementById("nav-links");
+    
+                        if (hamburger && navLinks) {
+                            hamburger.onclick = function () {
+                                navLinks.classList.toggle("active");
+                            };
+                        }
+                    })
+                    .catch(error => console.error('Error loading navbar:', error));
+    </script>
+</body>
+</html>
