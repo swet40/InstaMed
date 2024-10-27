@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Booking</title>
+    <link rel="stylesheet" href="abtdoc.css">
+</head>
+
+<body>
+    <header id="navbar-placeholder"></header>
+    <div class="doctor-container">
+
+        <div class="doctor-image-card">
+            <img src="/images/doc-1.png" alt="Dr. Richard James">
+        </div>
+
+        <div class="doctor-info-card">
+            <h2>Dr. Richard James</h2>
+            <p>MBBS - General Physician (2 Years)</p>
+            <p>About</p>
+            <p>Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.</p>
+            <p>Appointment fee: $50</p>
+        </div>
+    </div>
+        <div class="slots">
+            <p>Booking Slots</p>
+            <div id="slot-container"></div> <!-- This will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        function generateBookingSlots() {
+    const slotContainer = document.getElementById("slot-container");
+    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    // Create slots for 7 consecutive days
+    for (let i = 0; i < 7; i++) {
+        // Calculate the date for each slot
+        const slotDate = new Date();
+        slotDate.setDate(slotDate.getDate() + i);
+
+        // Get the day of the week and the day number
+        const dayName = daysOfWeek[slotDate.getDay()];
+        const dayNumber = slotDate.getDate();
+
+        // Create a slot card
+        const slotCard = document.createElement("div");
+        slotCard.className = "slot-card";
+
+        // Add the day and date inside the slot card
+        slotCard.innerHTML = `<p>${dayName}</p><p>${dayNumber}</p>`;
+
+        // Append the slot card to the slot container
+        slotContainer.appendChild(slotCard);
+    }
+}
+generateBookingSlots();
+
+        fetch('../includes/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+
+                const hamburger = document.getElementById("hamburger");
+                const navLinks = document.getElementById("nav-links");
+
+                if (hamburger && navLinks) {
+                    hamburger.onclick = function () {
+                        navLinks.classList.toggle("active");
+                    };
+                }
+            })
+            .catch(error => console.error('Error loading navbar:', error));
+    </script>
+</body>
+</html>

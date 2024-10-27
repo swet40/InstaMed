@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.doctor-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Doctor Image Card */
+.doctor-image-card {
+    flex: 0 0 200px;
+    background-color: #3FABF3;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-top: 80px; /* Adjust the value as needed */
+    margin-bottom: 20px;
+}
+
+.doctor-image-card img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Doctor Information Card */
+.doctor-info-card {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    padding: 20px;
+    margin-top: 80px; /* Adjust the value as needed */
+    margin-bottom: 20px;
+    width: 40%;
+}
+
+.doctor-info-card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.doctor-info-card p {
+    margin-bottom: 10px;
+}
+
+.doctor-info-card p:last-child {
+    margin-bottom: 0;
+}
+
+.slot-card{
+    width: 87px;
+    height: 127px;
+    border-radius: 43.5px;
+    background-color: aqua;
+    
+}
+.slots {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.slots > p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.slot-card {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #3FABF3; /* Sky blue background */
+    color: #fff;
+    padding: 10px 20px;
+    margin: 5px 0;
+    width: 87px;
+    height: 127px;
+    border-radius: 43.5px;
+    text-align: center;
+}
