@@ -23,39 +23,93 @@
             <p>Appointment fee: $50</p>
         </div>
     </div>
+    <p id="book">Booking Slots</p>
         <div class="slots">
-            <p>Booking Slots</p>
-            <div id="slot-container"></div> <!-- This will be populated by JavaScript -->
+            <div id="slot-container"></div>
         </div>
-    </div>
+        <select class="time-dropdown">
+            <option value="" disabled selected>Select Time</option>
+            <option value="9:00 AM">9:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="1:00 PM">1:00 PM</option>
+            <option value="2:00 PM">2:00 PM</option>
+            <option value="3:00 PM">3:00 PM</option>
+            <option value="4:00 PM">4:00 PM</option>
+        </select> <br>
+        <button class="book-btn">Book an Appointment</button>
 
+        <!-- more doctors -->
+        <h2 style="text-align: center; margin-top: 30px;">More Trusted Doctors</h2>
+        <p style="text-align: center;">Our extensive list of trusted Doctors</p>
+        <div class="col-md-9" style="margin-left: 300px;">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="card doctor-image-card">
+                        <img src="/images/doc-2.png" class="card-img-top" alt="..." id="main-doctor-image">
+                        <div class="card-body">
+                            <h5 class="doctor-name">Dr. Richard James</h5>
+                            <p class="card-title">General Physician</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card doctor-image-card">
+                        <img src="/images/doc-3.png" class="card-img-top" alt="..." id="main-doctor-image">
+                        <div class="card-body">
+                            <h5 class="doctor-name">Dr. Richard James</h5>
+                            <p class="card-title">General Physician</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card doctor-image-card">
+                        <img src="/images/doc-4.png" class="card-img-top" alt="..." id="main-doctor-image">
+                        <div class="card-body">
+                            <h5 class="doctor-name">Dr. Richard James</h5>
+                            <p class="card-title">General Physician</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
     <script>
+
+
         function generateBookingSlots() {
     const slotContainer = document.getElementById("slot-container");
     const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const today = new Date();
+    const currentDay = today.getDate();
 
     // Create slots for 7 consecutive days
     for (let i = 0; i < 7; i++) {
-        // Calculate the date for each slot
-        const slotDate = new Date();
-        slotDate.setDate(slotDate.getDate() + i);
+            // Calculate the date for each slot
+            const slotDate = new Date();
+            slotDate.setDate(today.getDate() + i);
 
-        // Get the day of the week and the day number
-        const dayName = daysOfWeek[slotDate.getDay()];
-        const dayNumber = slotDate.getDate();
+            // Get the day of the week and the day number
+            const dayName = daysOfWeek[slotDate.getDay()];
+            const dayNumber = slotDate.getDate();
 
-        // Create a slot card
-        const slotCard = document.createElement("div");
-        slotCard.className = "slot-card";
+            // Create a slot card
+            const slotCard = document.createElement("div");
+            slotCard.className = "slot-card";
+            slotCard.innerHTML = `<p>${dayName}</p><p>${dayNumber}</p>`;
 
-        // Add the day and date inside the slot card
-        slotCard.innerHTML = `<p>${dayName}</p><p>${dayNumber}</p>`;
+            // Set the "active" class if this slot is today
+            if (dayNumber === currentDay) {
+                slotCard.classList.add("active");
+            }
 
-        // Append the slot card to the slot container
-        slotContainer.appendChild(slotCard);
+            // Append the slot card to the slot container
+            slotContainer.appendChild(slotCard);
+        }
     }
-}
-generateBookingSlots();
+
+    generateBookingSlots();
+
 
         fetch('../includes/navbar.html')
             .then(response => response.text())

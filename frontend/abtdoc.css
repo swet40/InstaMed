@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
+    color: black;
     padding: 0;
 }
 
@@ -57,34 +60,124 @@ body {
     margin-bottom: 0;
 }
 
-.slot-card{
-    width: 87px;
-    height: 127px;
-    border-radius: 43.5px;
-    background-color: aqua;
-    
-}
-.slots {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-}
-
-.slots > p {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
 .slot-card {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    background-color: #3FABF3; /* Sky blue background */
-    color: #fff;
-    padding: 10px 20px;
+    align-items: center;
+    background-color: #fff; /* Sky blue background */
+    color: #000;
+    border: 2px solid gray;
+    padding: 10px ;
     margin: 5px 0;
     width: 87px;
     height: 127px;
     border-radius: 43.5px;
     text-align: center;
+}
+.slot-card:hover {
+    background-color: #3FABF3; /* Sky blue background */
+    color: #fff;
+    border: none;
+}
+
+.slots {
+    display: flex;
+    gap: 10px; 
+    margin-top: 20px;
+    flex-direction: row;
+}
+
+
+.slots > p {
+    font-weight: bold;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+#slot-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    margin-left: 250px;
+}
+
+#book {
+    font-weight: bold;
+    text-align: left;
+    margin-left: 250px;
+}
+.time-dropdown {
+    margin-top: 15px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid gray;
+    background-color: #fff;
+    color: #3FABF3;
+    font-size: 14px;
+    width: 15%;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 250px;
+}
+
+.time-dropdown:focus {
+    outline: none;
+    box-shadow: 0 0 5px #3FABF3;
+}
+
+.book-btn {
+    margin-left: 250px;
+    width: 15%;
+    border-radius: 43.5px ;
+    padding: 5px;
+    margin-top: 20px;
+    background-color: #fff;
+    color: #000;
+    font-size: 15px;
+    border: 2px solid gray;
+}
+
+.book-btn:hover {
+    background-color: #3FABF3;
+    border: none;
+}
+
+.active {
+    background-color: #3FABF3; 
+    color: #fff;
+    border: none;
+}
+
+.card {
+    border: 1px solid #007bff;
+    cursor: pointer;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: space-around; 
+    border-radius: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.card:hover {
+    box-shadow: 0 4px 4px #007bff;
+    transition: transform 0.2s ease-in-out;
+}
+.card p, h2, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+.card-body {
+    text-align: center;
+}
+.card img{
+    height: 200px;
+    width: 200px;
+    align-items: center !important;
+    object-fit: cover;
+    border-radius: 8px;
 }
