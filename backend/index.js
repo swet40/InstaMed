@@ -14,8 +14,6 @@ connectDB();
 connectCloudinary();
 
 
-
-
 // =======================MIDDLEWARES=====================
 app.use(express.json());
 app.use(cors());
