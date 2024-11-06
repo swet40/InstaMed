@@ -4,8 +4,8 @@ export const AllDoctors = () => {
   return (
     <>
       <div className="row">
-        <div className="col-md-3">
-          <div className="filter-sidebar">
+        <div className="">
+          <div className="flex flex-col">
             <button className="btn btn-outline-secondary w-100">
               General Physician
             </button>
@@ -24,8 +24,8 @@ export const AllDoctors = () => {
             </button>
           </div>
         </div>
-        <div className="col-md-9">
-          <div className="row">
+        <div className="">
+          <div className="grid grid-cols-4">
             <div className="col-md-3 mb-4">
               <div className="card">
                 <img src="/images/doc-1.png" className="card-img-top" alt="..." />

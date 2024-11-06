@@ -79,7 +79,7 @@ const getDoctorAppointments = async (req, res) => {
 
 // ==========to mark appo completed==============
 const appoComplete = async (req, res) => {
-  try {
+  try { 
     const { docId, appointmentId} = req.body
 
     const appointmentData = await appointmentModel.findById(appointmentId)
