@@ -1,15 +1,57 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../context/AppContext";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [currState, setCurrState] = useState("Sign up");
-
+  const navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
+  const {token, setToken, backendUrl} = useContext(AppContext)
+
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+
+    try {
+
+      if(currState === "Sign up"){
+        const {data} = await axios.post(backendUrl + "/user/register", {name, email, password})
+
+        if(data.success){
+          localStorage.setItem("token",data.token)
+          setToken(data.token)
+        }else{
+          toast.error(data.message)
+        }
+      }else{
+
+        const {data} = await axios.post(backendUrl + "/user/login", { email, password})
+
+        if(data.success){
+          localStorage.setItem("token",data.token)
+          setToken(data.token)
+        }else{
+          toast.error(data.message)
+        }
+
+      }
+
+
+    } catch (e) {
+      console.log(e)
+      toast.error(e.message)
+    }
   };
+
+  useEffect(()=>{
+    if(token){
+      navigate("/")
+    }
+  },[token])
 
   return (
     <form onSubmit={onSubmitHandler} className="min-h-[80vh] flex items-center">
@@ -59,7 +101,7 @@ const Login = () => {
             <p className="cursor-pointer">Forgot your password?</p>
           )}
         </div>
-        <button className="bg-primary text-white w-full py-2 rounded-md text-base">
+        <button type="submit" className="bg-primary text-white w-full py-2 rounded-md text-base">
           {currState === "Login" ? "Login" : "Sing Up"}
         </button>
         <div>

@@ -10,7 +10,7 @@ const getAllDoctors = async (req, res) => {
     res.json({ success: true, doctors });
   } catch (e) {
     console.log(e);
-    res.josn({ success: false, message: e.message });
+    res.json({ success: false, message: e.message });
   }
 };
 
@@ -20,12 +20,12 @@ const changeAvialability = async (req, res) => {
 
     const docData = await doctorModel.findById(docId);
     await doctorModel.findByIdAndUpdate(docId, {
-      avialable: !docData.avialable,
+      available: !docData.available,
     });
-    res.json({ success: true, message: "Availablility changes" });
+    res.json({ success: true, message: "Availablility changed" });
   } catch (e) {
     console.log(e);
-    res.josn({ success: false, message: e.message });
+    res.json({ success: false, message: e.message });
   }
 };
 
@@ -53,7 +53,7 @@ const loginDoctor = async (req, res) => {
 
   } catch (e) {
     console.log(e);
-    res.josn({ success: false, message: e.message });
+    res.json({ success: false, message: e.message });
   }
 
 }
@@ -72,7 +72,7 @@ const getDoctorAppointments = async (req, res) => {
 
   } catch (e) {
     console.log(e);
-    res.josn({ success: false, message: e.message });
+    res.json({ success: false, message: e.message });
   }
 };
 
@@ -86,15 +86,15 @@ const appoComplete = async (req, res) => {
 
     if(appointmentData && appointmentData.docId === docId){
       await appointmentModel.findByIdAndUpdate(appointmentId, { isCompleted: true });
-      return res.josn({ success: true, message: "Appointment completed" });
+      return res.json({ success: true, message: "Appointment completed" });
     }else{
-      return res.josn({ success: true, message: "Mark failed" });
+      return res.json({ success: true, message: "Mark failed" });
     }
 
 
   } catch (e) {
     console.log(e);
-    res.josn({ success: false, message: e.message });
+    res.json({ success: false, message: e.message });
   }
 }
 
@@ -112,17 +112,17 @@ const appoCancel = async (req, res) => {
         cancelled: true,
       });
 
-      return res.josn({ success: true, message: "Appointment cancelled" });
+      return res.json({ success: true, message: "Appointment cancelled" });
 
     } else {
 
-      return res.josn({ success: true, message: "Cancelllation failed" });
+      return res.json({ success: true, message: "Cancelllation failed" });
 
     }
 
   } catch (e) {
     console.log(e);
-    res.josn({ success: false, message: e.message });
+    res.json({ success: false, message: e.message });
   }
 };
 
@@ -131,6 +131,9 @@ const appoCancel = async (req, res) => {
 const docDashboard = async (req, res) => {
   try {
     const { docId } = req.body;
+
+    const appointments = await appointmentModel.find({docId})
+
     let earnings = 0;
 
     appointments.map((item)=>{
@@ -159,7 +162,7 @@ const docDashboard = async (req, res) => {
 
   } catch (e) {
     console.log(e);
-    res.josn({ success: false, message: e.message });
+    res.json({ success: false, message: e.message });
   }
 };
   
@@ -169,10 +172,10 @@ const getDoctorProfile = async (req, res) => {
   try {
     const { docId } = req.body;
 
-    const docProfileData = await doctorModel
+    const profileData = await doctorModel
       .findById(docId)
       .select("-password");
-    res.json({ success: true, docProfileData });
+    res.json({ success: true, profileData });
   } catch (error) {
     console.log(e);
     return res.json({ success: false, message: e.message });

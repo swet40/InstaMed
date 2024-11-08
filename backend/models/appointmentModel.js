@@ -57,11 +57,11 @@ const appointmentSchema = new mongoose.Schema({
     required: true,
   },
   userData: {
-    type: String,
+    type: Object,
     required: true,
   },
   docData: {
-    type: String,
+    type: Object,
     required: true,
   },
   amount: {
@@ -73,7 +73,7 @@ const appointmentSchema = new mongoose.Schema({
     required: true,
   },
   cancelled: {
-    type: String,
+    type: Boolean,
     default: false,
   },
   payment: {
@@ -81,7 +81,7 @@ const appointmentSchema = new mongoose.Schema({
     default: false,
   },
   isCompleted: {
-    type: String,
+    type: Boolean,
     default: false,
   }
 })

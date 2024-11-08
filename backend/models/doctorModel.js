@@ -32,7 +32,11 @@ const doctorSchema = new mongoose.Schema(
       type: Object,
       default: { line1: "", line2: "" },
     },
-    specialization: {
+    about: {
+      type: String,
+      required: true,
+    },
+    speciality: {
       type: String,
       required: true,
     },
@@ -44,7 +48,7 @@ const doctorSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    avialable: {
+    available: {
       type: Boolean,
       default: true,
     },

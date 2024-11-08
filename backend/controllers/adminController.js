@@ -31,11 +31,11 @@ const adminLogin = async (req, res) => {
 // Create a new doctor
 const createDoctor = async (req, res) => {
     try {
-      const { name, email, password, phone, specialization, address, fees , degree, experience } = req.body;
+      const { name, email, password,  speciality, about,  address, fees , degree, experience } = req.body;
       
       const imageFile = req.file;
 
-      if(!name || !email || !password || !phone || !specialization ||  !address || !degree || !fees){
+      if(!name || !email || !password || !speciality ||  !address || !degree || !fees ||!about){
         return res.json({success: false, message: "Fill all details"})
       }
 
@@ -60,9 +60,9 @@ const createDoctor = async (req, res) => {
         name,
         email,
         password: hashedPassword,
-        phone,
         image: imageUrl,
-        specialization,
+        speciality,
+        about,
         address: JSON.parse(address),
         degree,
         experience,
@@ -151,7 +151,11 @@ const adminDash = async (req, res) => {
     }
 
 
-    res.json({success: true}, dashData)
+    res.status(200).json({
+      success: true,
+      dashData
+    });
+    
     
   } catch (e) {
     console.log(e)
