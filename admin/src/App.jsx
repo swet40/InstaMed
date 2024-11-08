@@ -46,7 +46,6 @@ const App = () => {
       <div>
         <Login />
         <ToastContainer />
-        <p>token toh nhi h yaar</p>
       </div>
     </>
   );
