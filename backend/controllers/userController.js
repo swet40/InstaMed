@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import { v2 as cloudinary } from "cloudinary";
 import doctorModel from "../models/doctorModel.js";
 import appointmentModel from "../models/appointmentModel.js";
+import razorpay from "razorpay"
 
 const loginUser = async (req, res) => {
 
@@ -104,10 +105,10 @@ const getProfile = async (req, res) => {
 // ---------------update user profile-------------
 const updateProfile = async (req, res) => {
   try {
-    const { userId, name, phone, address, dob, about } = req.body;
+    const { userId, name, phone, address, dob, gender } = req.body;
     const imageFile = req.file;
 
-    if (!name || !phone || !dob || !about) {
+    if (!name || !phone || !dob || !gender) {
       return res.json({ success: false, message: "data missing" });
     }
 
@@ -116,7 +117,7 @@ const updateProfile = async (req, res) => {
       phone,
       address: JSON.parse(address),
       dob,
-      about,
+      gender,
     });
 
     if (imageFile) {
@@ -142,10 +143,10 @@ const bookAppointment = async (req, res) => {
         
         const  { userId, docId, slotDate, slotTime } = req.body
 
-        const docData = await doctorModel.findById(docId).select('-password')
+       const docData = await doctorModel.findById(docId).select("-password")
 
-        if(!docData.available){
-            return res.json({success: false, message: "dctor not available"})
+        if(!docData.available) {
+            return res.json({success: false, message: "Doctor not available"})
         }
 
         let slots_booked = docData.slots_booked;
@@ -203,7 +204,7 @@ const listAllAppointments = async (req, res) => {
 
         const appointments = await appointmentModel.find({userId})
 
-        res.josn({success: true, appointments})
+        res.json({success: true, appointments})
 
     } catch (e) {
         console.log(e)
@@ -244,5 +245,26 @@ const cancelAppointments = async (req, res) => {
     }
 }
 
+// const razorparInstance = new razorpay({
+//     key_id: "" ,
+//     key_secret: "" ,
+// })
+
+// payment method using razorpay
+// const paymentRazorpay = async (req, res) => {
+
+//     const { appointmentId } = req.body;
+//     const appointmentData = await appointmentModel.findById(appointmentId)
+
+//     if(!appointmentData || appointmentData.cancelled){
+//         return res.json({success: false, message: "Appointment Cancelled or not found"})
+//     }
+
+//     const options = {
+        
+//     }
+
+
+// }
 
 export {loginUser, registerUser, getProfile, updateProfile, bookAppointment, cancelAppointments, listAllAppointments};

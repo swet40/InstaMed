@@ -8,7 +8,7 @@ const doctorAuth = async (req, res, next) => {
         const { dtoken } = req.headers
 
         if(!dtoken){
-            return res.json({success: false, message: "Not authorized login again, kyunki token nhi h yar "})
+            return res.json({success: false, message: "Not authorized login againr"})
         }
 
         const token_decode = jwt.verify(dtoken, process.env.JWT_SECRET_KEY);
