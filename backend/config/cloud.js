@@ -1,6 +1,5 @@
 import { v2 as cloudinary } from "cloudinary";
 
-
 export const connectCloudinary = async () => {
 
     cloudinary.config({

@@ -164,7 +164,4 @@ const adminDash = async (req, res) => {
 }
 
 
-
-
-
 export {createDoctor, adminLogin, allDoctors, appointmentsAdmin, cancelAppo, adminDash}

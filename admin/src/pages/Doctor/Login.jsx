@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { AdminContext } from "../../context/adminContext";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -50,9 +50,6 @@ export const Login = () => {
         }
 
       }
-
-     
-
     } catch (e) {
       console.log(e);
     }

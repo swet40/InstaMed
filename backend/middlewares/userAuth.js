@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 
-
 const userAuth = async (req, res, next) => {
 
     try {
@@ -13,7 +12,6 @@ const userAuth = async (req, res, next) => {
 
         const token_decode = jwt.verify(token, process.env.JWT_SECRET_KEY);
         
-        
         req.body.userId = token_decode.id
 
         next()
@@ -24,6 +22,5 @@ const userAuth = async (req, res, next) => {
     }
 
 }
-
 
 export default userAuth;

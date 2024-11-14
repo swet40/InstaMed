@@ -200,6 +200,4 @@ const updateDoctorProfile = async (req, res) => {
 };
 
 
-
-
 export { changeAvialability, getAllDoctors, loginDoctor, getDoctorAppointments, appoCancel, appoComplete, docDashboard, updateDoctorProfile, getDoctorProfile }
