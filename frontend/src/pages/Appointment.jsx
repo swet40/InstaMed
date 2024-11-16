@@ -2,14 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
-import RelatedDoctors from "../components/RelatedDoctors";
 import { toast } from "react-toastify";
 import axios from "axios";
 
 const Appointment = () => {
   const { docId } = useParams();
-  const { doctors, currencySymbol, getDoctorsData, backendUrl, token } =
-    useContext(AppContext);
+  const { doctors, currencySymbol, getDoctorsData, backendUrl, token } = useContext(AppContext);
   const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const navigate = useNavigate();
   const [docInfo, setDocInfo] = useState(null);
@@ -20,29 +18,21 @@ const Appointment = () => {
   const fetchDocInfo = async () => {
     const docInfo = doctors.find((doc) => doc._id === docId);
     setDocInfo(docInfo);
-    // console.log(docInfo);
   };
 
   const getAvailableSlots = async () => {
     setDocSlots([]);
-
-    // getting current date
     let today = new Date();
 
     for (let i = 0; i < 7; i++) {
       let currentDate = new Date(today);
       currentDate.setDate(today.getDate() + i);
-
-      // setting end time of the date
       let endTime = new Date();
       endTime.setDate(today.getDate() + i);
       endTime.setHours(21, 0, 0, 0);
 
-      // setting hours
       if (today.getDate() === currentDate.getDate()) {
-        currentDate.setHours(
-          currentDate.getHours() > 10 ? currentDate.getHours() + 1 : 10
-        );
+        currentDate.setHours(currentDate.getHours() > 10 ? currentDate.getHours() + 1 : 10);
         currentDate.setMinutes(currentDate.getMinutes() > 30 ? 30 : 0);
       } else {
         currentDate.setHours(10);
@@ -50,17 +40,11 @@ const Appointment = () => {
       }
 
       let timeSlots = [];
-
       while (currentDate < endTime) {
-        let formattedTime = currentDate.toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-
+        let formattedTime = currentDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
         let day = currentDate.getDate();
         let month = currentDate.getMonth() + 1;
         let year = currentDate.getFullYear();
-
         const slotDate = day + "_" + month + "_" + year;
         const slotTime = formattedTime;
 
@@ -71,16 +55,13 @@ const Appointment = () => {
             : true;
 
         if (isSlotAvailable) {
-          // add slot to array
           timeSlots.push({
             datetime: new Date(currentDate),
             time: formattedTime,
           });
         }
-
         currentDate.setMinutes(currentDate.getMinutes() + 30);
       }
-
       setDocSlots((prev) => [...prev, timeSlots]);
     }
   };
@@ -90,14 +71,11 @@ const Appointment = () => {
       toast.warn("Login to book appointment");
       return navigate("/login");
     }
-
     try {
       const date = docSlots[slotIndex][0].datetime;
-
       let day = date.getDate();
       let month = date.getMonth() + 1;
       let year = date.getFullYear();
-
       const slotDate = day + "_" + month + "_" + year;
 
       const { data } = await axios.post(
@@ -126,10 +104,6 @@ const Appointment = () => {
   useEffect(() => {
     getAvailableSlots();
   }, [docInfo]);
-
-  useEffect(() => {
-    // console.log(docSlots);
-  }, [docSlots]);
 
   return (
     docInfo && (
@@ -164,26 +138,24 @@ const Appointment = () => {
               </p>
             </div>
             <p className="text-gray-500 font-medium mt-4">
-              Appintment fee:{" "}
+              Appointment fee:{" "}
               <span className="text-gray-600">
-                {" "}
                 {currencySymbol}
-                {docInfo.fees}{" "}
+                {docInfo.fees}
               </span>
             </p>
           </div>
         </div>
-        {/* booking slots */}
-        <div className="sm:ml-72 sm:pl-4 mt-4 font-mediu text-gray-700">
+        <div className="sm:ml-72 sm:pl-4 mt-4 font-medium text-gray-700">
           <p>Booking Slots</p>
-          <div className="flex gap-3 tems-center w-full overflow-x-scroll mt-4">
+          <div className="flex gap-3 items-center w-full overflow-x-scroll mt-4">
             {docSlots.length &&
               docSlots.map((item, index) => (
                 <div
                   onClick={() => setSlotIndex(index)}
                   className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${
                     slotIndex === index
-                      ? "bg-primary text-white "
+                      ? "bg-primary text-white"
                       : "border border-gray-200"
                   }`}
                   key={index}
@@ -217,8 +189,6 @@ const Appointment = () => {
             Book an appointment
           </button>
         </div>
-        {/* listing relate doctors */}
-        <RelatedDoctors docId={docId} speciality={docInfo.speciality} />
       </div>
     )
   );
