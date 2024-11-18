@@ -42,7 +42,7 @@ const loginDoctor = async (req, res) => {
       const isMatch = await bcrypt.compare(password, doctor.password)
 
       if (isMatch) {
-        const token = jwt.sign({ id: doctor._id }, process.env.JWT_SECRET_KEY, {
+        const token = jwt.sign({ id: doctor._id }, process.env.JWT_SECRET, {
           expiresIn: 7 * 24 * 60 * 60,
         });
         return res.json({ success: true, token });
@@ -198,6 +198,8 @@ const updateDoctorProfile = async (req, res) => {
     return res.json({ success: false, message: e.message });
   }
 };
+
+
 
 
 export { changeAvialability, getAllDoctors, loginDoctor, getDoctorAppointments, appoCancel, appoComplete, docDashboard, updateDoctorProfile, getDoctorProfile }

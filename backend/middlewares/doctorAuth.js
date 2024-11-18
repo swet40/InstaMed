@@ -11,9 +11,9 @@ const doctorAuth = async (req, res, next) => {
             return res.json({success: false, message: "Not authorized login againr"})
         }
 
-        const token_decode = jwt.verify(dtoken, process.env.JWT_SECRET_KEY);
+        const token_decode = jwt.verify(dtoken, process.env.JWT_SECRET)
         
-        req.body.docId = token_decode.id
+       req.body.docId = token_decode.id
 
         next()
 

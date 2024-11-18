@@ -5,7 +5,8 @@ import jwt from "jsonwebtoken";
 import { v2 as cloudinary } from "cloudinary";
 import doctorModel from "../models/doctorModel.js";
 import appointmentModel from "../models/appointmentModel.js";
-import razorpay from "razorpay"
+// import { sendEmail } from "../utils/sendEmail.js";
+// import razorpay from "razorpay"
 
 const loginUser = async (req, res) => {
 
@@ -20,11 +21,13 @@ const loginUser = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password)
 
         if (isMatch) {
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY );
+            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+                expiresIn: 7 * 24 * 60 * 60,
+            })
             return res.json({ success: true, token });
-            } else {
+        }else {
             return res.json({ success: false, message: "Invalid credentials" });
-        }
+          }
 
 
     } catch (e) {
@@ -73,7 +76,9 @@ const registerUser = async (req, res) => {
         }) 
 
         const user = await newUser.save();
-        const token = jwt.sign({id: user._id},process.env.JWT_SECRET_KEY)
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+            expiresIn: 7* 24 * 60 * 60,
+        })
         res.json({success: true, token})
 
     } catch (e) {
@@ -137,7 +142,7 @@ const updateProfile = async (req, res) => {
 const bookAppointment = async (req, res) => {
     try {
         
-        const  { userId, docId, slotDate, slotTime } = req.body
+        const  { userId, docId, slotDate, slotTime, appointmentType } = req.body
 
        const docData = await doctorModel.findById(docId).select("-password")
 
@@ -172,7 +177,9 @@ const bookAppointment = async (req, res) => {
             amount: docData.fees,
             slotTime,
             slotDate,
-            date: Date.now()
+            date: Date.now(),
+            appointmentType: appointmentType || "in-person",
+            
         }
 
 
@@ -191,6 +198,31 @@ const bookAppointment = async (req, res) => {
     }
 }
 
+// Schedule online appointment reminders function
+// const scheduleOnlineAppointmentReminders = () => {
+//     setInterval(async () => {
+//       const now = new Date();
+//       const upcomingAppointments = await appointmentModel.find({
+//         appointmentType: "online",
+//         date: { $gte: now, $lte: new Date(now.getTime() + 15 * 60 * 1000) } // 15 mins before
+//       });
+  
+//       upcomingAppointments.forEach(async (appointment) => {
+//         try {
+//           const user = await userModel.findById(appointment.userId); // Fetch user by userId
+//           if (user && user.email) {
+//             await sendEmail({
+//               to: user.email,
+//               subject: "Online Appointment Reminder",
+//               text: `This is a reminder for your online appointment scheduled at ${appointment.date}.`,
+//             });
+//           }
+//         } catch (error) {
+//           console.error("Error sending reminder email:", error);
+//         }
+//       });
+//     }, 5 * 60 * 1000); // Run every 5 minutes
+//   };
 
 // ----------------listing all appointment for user to see upcoming and previous appointments
 const listAllAppointments = async (req, res) => {
@@ -241,6 +273,29 @@ const cancelAppointments = async (req, res) => {
     }
 }
 
+const deleteAppointment = async (req, res) => {
+
+    try {
+        
+        const { userId, appointmentId } = req.body;
+
+        const appointmentData = await appointmentModel.findById(appointmentId)
+
+        if (appointmentData.userId !== userId) {
+            return  res.json({success: false, message: "unauthorized action"})
+        }
+
+        await appointmentModel.findByIdAndDelete(appointmentId)
+
+        res.json({success: true, message:"appointment deleted"})
+
+    } catch (e) {
+        console.log(e)
+        return res.json({success: false, message: e.message})
+    }
+
+}
+
 // const razorparInstance = new razorpay({
 //     key_id: "" ,
 //     key_secret: "" ,
@@ -263,4 +318,4 @@ const cancelAppointments = async (req, res) => {
 
 // }
 
-export {loginUser, registerUser, getProfile, updateProfile, bookAppointment, cancelAppointments, listAllAppointments};
+export {loginUser, registerUser, getProfile, updateProfile, bookAppointment, cancelAppointments, listAllAppointments, deleteAppointment};

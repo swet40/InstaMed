@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 export const Banner = () => {
 
-    const naviagte = useNavigate()
+    const navigate = useNavigate()
 
     return (
         <div className="flex bg-white rounded-lg px-6 sm:px-10 md:px-14 lg:px-12 my-20 md:mx-10">

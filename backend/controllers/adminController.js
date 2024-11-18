@@ -9,33 +9,32 @@ import userModel from "../models/userModel.js";
 
 // -------------------ROUTE FOR ADMIN LOGIN-------------------------
 const adminLogin = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    if (
-      email === process.env.ADMIN_EMAIL &&
-      password === process.env.ADMIN_PASSWORD
-    ) {
-      const token = jwt.sign(email + password, process.env.JWT_SECRET_KEY);
-      res.json({ success: true, token });
-    } else {
-      res.json({ success: false, message: "Invalid credentials" });
+    try {
+      const { email, password } = req.body;
+  
+      if (
+        email === process.env.ADMIN_EMAIL &&
+        password === process.env.ADMIN_PASSWORD
+      ) {
+        const token = jwt.sign(email + password, process.env.JWT_SECRET);
+        res.json({ success: true, token });
+      } else {
+        res.json({ success: false, message: "Invalid credentials" });
+      }
+    } catch (e) {
+      console.log(e);
+      res.json({ success: false, message: e.message });
     }
-  } catch (e) {
-    console.log(e);
-    res.json({ success: false, message: e.message });
-  }
-};
-
+  };
 
 // Create a new doctor
 const createDoctor = async (req, res) => {
     try {
-      const { name, email, password,  speciality, about,  address, fees , degree, experience } = req.body;
+      const { name, email, password,  speciality, about,  address, fees , degree, experience, fixedId } = req.body;
       
       const imageFile = req.file;
 
-      if(!name || !email || !password || !speciality ||  !address || !degree || !fees ||!about){
+      if(!name || !email || !password || !speciality ||  !address || !degree || !fees ||!about || !fixedId){
         return res.json({success: false, message: "Fill all details"})
       }
 
@@ -67,6 +66,7 @@ const createDoctor = async (req, res) => {
         degree,
         experience,
         fees,
+        fixedId,
         date: Date.now(),
       });
 
@@ -162,6 +162,9 @@ const adminDash = async (req, res) => {
     res.json({success: false, message: e.message})
   }
 }
+
+
+
 
 
 export {createDoctor, adminLogin, allDoctors, appointmentsAdmin, cancelAppo, adminDash}

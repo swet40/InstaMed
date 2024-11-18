@@ -11,7 +11,7 @@ const adminAuth = async (req, res, next) => {
             return res.json({success: false, message: "Not authorized login again, kyunki token nhi h yar "})
         }
 
-        const token_decode = jwt.verify(atoken, process.env.JWT_SECRET_KEY);
+        const token_decode = jwt.verify(atoken, process.env.JWT_SECRET)
         
         
         if(token_decode !== process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD){

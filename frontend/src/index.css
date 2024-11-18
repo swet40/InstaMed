@@ -1,22 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200&family=Outfit:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200&family=Outfit:wght@100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-*{
-    font-family: Outfit;
+* {
+  font-family: Outfit;
 }
 
-.active hr{
-    @apply block
+.active hr {
+  @apply block;
 }
 
-::-webkit-scrollbar{
-    @apply hidden;
+::-webkit-scrollbar {
+  @apply hidden;
 }
 
-@media (max-width:740px) {
-    .active p{
-        @apply text-white bg-primary
-    }
+@media (max-width: 740px) {
+  .active p {
+    @apply text-white bg-primary;
+  }
 }
+
+input {
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 300px;
+  border: 2px solid blue;
+  border-radius: 8px;
+}
+
+/* .leaflet-container {
+  height: 100vh;
+  width: 100%;
+} */
+
+/* .cluster-icon {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-color: #fff;
+} */
+
+input {
+  z-index: 1000;
+}
+
+/* this hides whole container */
+.leaflet-routing-container {
+  display: none; 
+}
+
+/* Or, to hide specific elements within the container: */
+/* .leaflet-routing-container .leaflet-routing-alt-line {
+  display: none;
+} */

@@ -19,7 +19,7 @@ const Navbar = () => {
       <img
         onClick={() => navigate("/")}
         className="w-16 cursor-pointer"
-        src={assets.logo}
+        src="/logo.webp"
         alt=""
       />
       <ul className="hidden md:flex items-start gap-5 font-medium">
@@ -39,10 +39,14 @@ const Navbar = () => {
           <li className="py-1 ">CONTACT</li>
           <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
         </NavLink>
+        <NavLink to="/nearby">
+          <li className="py-1 ">NEARBY</li>
+          <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
+        </NavLink>
       </ul>
       <div className="flex item-center gap-4">
         {token && userData ? (
-          <div className="flex items-center gap-2 cursor-pointer group relative">
+          <div className="flex items-center gap-2 cursor-pointer group relative" style={{zIndex: "1000"}}>
             <img className="w-8 rounded-full" src={userData.image} alt="" />
             <img className="w-2.5" src={assets.dropdown_icon} alt="" />
             <div className="absolute top-0 right-0 pt-14 text-base font-weight text-gray-600 z-20 hidden group-hover:block">
@@ -70,7 +74,7 @@ const Navbar = () => {
           </div>
         ) : (
           <button
-            onClick={() => navigate("/login")}
+            onClick={()=>navigate("/login")}
             className="bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block"
           >
             Create Account
@@ -116,6 +120,9 @@ const Navbar = () => {
             </NavLink>
             <NavLink to="/contact" onClick={() => setShowMenu(false)}>
               <p className="px-4 py-2 rounded inline-block">Contact us</p>
+            </NavLink>
+            <NavLink to="/nearby" onClick={() => setShowMenu(false)}>
+              <p className="px-4 py-2 rounded inline-block">Nearby</p>
             </NavLink>
           </ul>
         </div>

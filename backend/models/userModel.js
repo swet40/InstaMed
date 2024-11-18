@@ -20,7 +20,14 @@ const userSchema = new mongoose.Schema({
   },
   address: {
     type: Object,
-    default: {line1: "", line2: ""},
+    default: {
+      housenumber : "",
+      locality: "",
+      district: "",
+      city: "",
+      state: "",
+      country: "",
+    },
   },
   phone: {
     type: Number,
@@ -62,6 +69,7 @@ const userSchema = new mongoose.Schema({
     },
   ],
 });
+
 
 
 const userModel = mongoose.models.user || mongoose.model("user", userSchema);

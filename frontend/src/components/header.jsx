@@ -1,11 +1,9 @@
-import { assets } from "../assets/assets"
-
 const Header = () => {
     return (
         <div
             className="relative flex flex-col md:flex-row items-center justify-center rounded-lg px-6 md:px-10 lg:px-20 py-10 md:py-16 lg:py-20 text-center"
             style={{
-                backgroundImage: `url(${headerbg})`,
+                backgroundImage: `url(${"/headerbg.png"})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',

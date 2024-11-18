@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, TileLayer, Popup, useMap } from "react-leaflet";
 import { Icon } from "leaflet";
 import axios from "axios";
+import { AppContext } from "../context/AppContext";
 
-const App = () => {
+export const Nearby = () => {
   const [userPosition, setUserPosition] = useState({
     latitude: 28.6139,
     longitude: 77.209,
@@ -13,7 +14,54 @@ const App = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [markerPosition, setMarkerPosition] = useState(null); // State for the single marker position
   const [nearbyPlaces, setNearbyPlaces] = useState([]);
+  const { loadUserProfileData, userData } = useContext(AppContext)
+  
+  useEffect(() => {
+    if (!userData) {
+      loadUserProfileData();
+      return;
+    }
+  
+    if (userData.address && userData.address.locality) {
+  
+      // Build a query using the relevant parts
+      const locality = userData.address.locality // e.g., "Janakpuri"
+      const district = userData.address.district || ""; // e.g., "West Delhi"
+      const state =userData.address.state || ""; // e.g., "Delhi"
+      const country =userData.address.country || ""; // e.g., "India"
+  
+      const searchQuery = `${locality}, ${district}, ${state}, ${country}`.trim();
+      console.log("Search query:", searchQuery); // Debug: log the constructed search query
+  
+      const fetchCoordinates = async () => {
+        try {
+          const response = await axios.get(
+            `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(searchQuery)}&format=json&addressdetails=1&limit=1`
+          );
+          
+          console.log("API Response:", response.data); // Debug: log the response from API
+  
+          if (response.data.length > 0) {
+            const { lat, lon } = response.data[0];
+            // console.log("Fetched coordinates:", lat, lon);
+  
+            setUserPosition({ latitude: parseFloat(lat), longitude: parseFloat(lon) });
+            setMarkerPosition([parseFloat(lat), parseFloat(lon)]);
+            fetchNearbyPlaces(lat, lon); // Fetch nearby places using the coordinates
+          } else {
+            console.error("No results found for address:", searchQuery);
+          }
+        } catch (error) {
+          console.error("Error fetching coordinates:", error);
+        }
+      };
+  
+      fetchCoordinates();
+    }
+  }, [userData, loadUserProfileData]);
+  
 
+  // console.log(userData.address)
 
   const customIcon = new Icon({
     iconUrl: "/marker.png",
@@ -137,7 +185,7 @@ const App = () => {
       <MapContainer
         center={[userPosition.latitude, userPosition.longitude]}
         zoom={13}
-        style={{ height: "100vh", width: "100%" }}
+        style={{ height: "50vh", width: "100%", borderRadius: "10px" }}
       >
         <UpdateMapCenter />
         <TileLayer
@@ -147,7 +195,7 @@ const App = () => {
         {/* Display only a single marker at the searched location */}
         {markerPosition && (
           <Marker position={markerPosition} icon={customIcon}>
-            <Popup>{searchQuery}</Popup>
+            <Popup>Your location</Popup>
           </Marker>
         )}
         {/* Markers for nearby places */}
@@ -167,4 +215,3 @@ const App = () => {
   );
 };
 
-export default App;

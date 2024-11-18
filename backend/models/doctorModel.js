@@ -30,7 +30,14 @@ const doctorSchema = new mongoose.Schema(
     },
     address: {
       type: Object,
-      default: { line1: "", line2: "" },
+      default: {
+        buildingnumber : "",
+        locality: "",
+        district: "",
+        city: "",
+        state: "",
+        country: "",
+      },
     },
     about: {
       type: String,
@@ -59,6 +66,11 @@ const doctorSchema = new mongoose.Schema(
     slots_booked: {
       type: Object,
       default: {},
+    },
+    fixedId: { // This ID is used to link a user to a socket
+      type: String,
+      unique: true,
+      required: true,
     },
   },
   { minimize: false }
