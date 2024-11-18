@@ -1,4 +1,4 @@
-**#InstaMed** - Accessible Healthcare Solution
+#InstaMed - Accessible Healthcare Solution
 
 InstaMed is a healthcare web application designed to connect patients with medical professionals, offering convenient access to healthcare services, especially for individuals in remote or underserved locations. The app provides dual consultation options, mapping features for locating nearby medical facilities, and an intuitive system for booking appointments and managing healthcare needs.
 
