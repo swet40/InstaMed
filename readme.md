@@ -1,8 +1,8 @@
-#InstaMed - Accessible Healthcare Solution
+**InstaMed** - Accessible Healthcare Solution
 
 InstaMed is a healthcare web application designed to connect patients with medical professionals, offering convenient access to healthcare services, especially for individuals in remote or underserved locations. The app provides dual consultation options, mapping features for locating nearby medical facilities, and an intuitive system for booking appointments and managing healthcare needs.
 
-**##Features**
+**Features**
 
 1. Dual Consultation Options: Users can book either a video consultation for minor health concerns or an in-person visit for more critical issues.
 
@@ -14,14 +14,14 @@ InstaMed is a healthcare web application designed to connect patients with medic
 
 5. Medical Resources: Stay informed with the latest medical articles to make educated health decisions.
 
-**##Getting Started**
+**Getting Started**
 
 **Prerequisites**
 
 1. Node.js and npm installed on your machine
 2. MongoDB instance (local or cloud-based)
 
-**##Endpoints**
+**Endpoints**
 
 1. /user: Manages user-related actions such as registration, login, and booking appointments.
 
@@ -29,7 +29,7 @@ InstaMed is a healthcare web application designed to connect patients with medic
 
 3. /doctor: Provides functionality for doctors to view their appointments and interact with patients.
 
-**##Future Enhancements**
+**Future Enhancements**
 
 1. Multilingual Support: Expanding accessibility by adding support for multiple languages.
 
@@ -37,7 +37,7 @@ InstaMed is a healthcare web application designed to connect patients with medic
 
 3. Health Tracking Features: Adding tools for users to monitor their health metrics and history within the app.
 
-**##Contributing**
+**Contributing**
 
 We welcome contributions! Please follow these steps to contribute:
 
