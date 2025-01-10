@@ -21,14 +21,6 @@ InstaMed is a healthcare web application designed to connect patients with medic
 1. Node.js and npm installed on your machine
 2. MongoDB instance (local or cloud-based)
 
-**Endpoints**
-
-1. /user: Manages user-related actions such as registration, login, and booking appointments.
-
-2. /admin: Allows admins to add doctors and manage all appointments on the platform.
-
-3. /doctor: Provides functionality for doctors to view their appointments and interact with patients.
-
 **Future Enhancements**
 
 1. Multilingual Support: Expanding accessibility by adding support for multiple languages.
