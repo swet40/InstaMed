@@ -1,28 +1,47 @@
 import jwt from "jsonwebtoken";
 
-
 const userAuth = async (req, res, next) => {
-
     try {
+        const { token, refreshToken } = req.headers;
 
-        const { token } = req.headers
-
-        if(!token){
-            return res.json({success: false, message: "Not authorized login again"})
+        if (!token) {
+            return res.json({ success: false, message: "Not authorized, login again" });
         }
 
-        const token_decode = jwt.verify(token, process.env.JWT_SECRET)
+        try {
+            const token_decode = jwt.verify(token, process.env.JWT_SECRET);
+            req.body.userId = token_decode.id;
+            return next();
+        } catch (e) {
+            if (e.name === "TokenExpiredError") {
+                if (!refreshToken) {
+                    return res.json({ success: false, message: "Session expired, login again" });
+                }
 
-        req.body.userId = token_decode.id
-        
-        next()
+                try {
+                    const refresh_decode = jwt.verify(refreshToken, process.env.REFRESH_SECRET);
+                    
+                    const newAccessToken = jwt.sign(
+                        { id: refresh_decode.id },
+                        process.env.JWT_SECRET,
+                        { expiresIn: "2h" }
+                    );
 
+                    res.json({ success: true, accessToken: newAccessToken });
+                } catch (refreshError) {
+                    return res.json({ success: false, message: "Invalid refresh token, login again" });
+                }
+            } else {
+                return res.json({ success: false, message: e.message });
+            }
+        }
     } catch (e) {
-        console.log(e)
-        res.json({success: false, message: e.message})
+        console.log(e);
+        res.json({ success: false, message: "Authentication error" });
     }
+};
 
-}
+export default userAuth;
 
 
 // export default userAuth;
@@ -50,5 +69,3 @@ const userAuth = async (req, res, next) => {
 //     res.json({ success: false, message: e.message });
 //   }
 // };
-
-export default userAuth;
