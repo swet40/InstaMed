@@ -1,18 +1,18 @@
 import { Route, Routes } from "react-router-dom"
-import Home from "./pages/Home"
-import Doctors from "./pages/Doctors"
-import Login from "./pages/Login"
-import About from "./pages/About"
-import Contact from "./pages/Contact"
-import MyProfile from "./pages/MyProfile"
-import MyAppointments from "./pages/MyAppointments"
-import Appointment from "./pages/Appointment"
-import Navbar from "./components/Navbar"
-import Footer from "./components/Footer"
-import { ToastContainer } from 'react-toastify';
+import Home from "./pages/Home.jsx"
+import Doctors from "./pages/Doctors.jsx"
+import Login from "./pages/Login.jsx"
+import About from "./pages/About.jsx"
+import Contact from "./pages/Contact.jsx"
+import MyProfile from "./pages/MyProfile.jsx"
+import MyAppointments from "./pages/MyAppointments.jsx"
+import Appointment from "./pages/Appointment.jsx"
+import Navbar from "./components/Navbar.jsx"
+import Footer from "./components/Footer.jsx"
+import { ToastContainer } from 'react-toastify.jsx';
 import 'react-toastify/dist/ReactToastify.css';
-import { Nearby } from "./pages/Nearby"
-import { VideoMeetComponent } from "./pages/videoMeet"
+import { Nearby } from "./pages/Nearby.jsx"
+import { VideoMeetComponent } from "./pages/videoMeet.jsx"
 import { useLocation } from "react-router-dom"
 
 const App = () => {

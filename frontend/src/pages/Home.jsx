@@ -1,7 +1,7 @@
-import ArticleBanner from '../components/Article'
-import { Banner } from '../components/Banner'
-import Header from '../components/header'
-import TopDoctors from '../components/TopDoctors'
+import ArticleBanner from '../components/Article.jsx'
+import { Banner } from '../components/Banner.jsx'
+import Header from '../components/header.jsx'
+import TopDoctors from '../components/TopDoctors.jsx'
 
 const Home = () => {
     return (
