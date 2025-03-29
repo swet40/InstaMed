@@ -1,4 +1,4 @@
-const ArticleBanner = () => {
+const Article = () => {
   return (
     <div className="flex justify-center items-center py-8 mt-8">
       <div className="w-full lg:w-8/12 lg:mx-8">
@@ -138,4 +138,4 @@ const ArticleBanner = () => {
   );
 };
 
-export default ArticleBanner;
+export default Article;
