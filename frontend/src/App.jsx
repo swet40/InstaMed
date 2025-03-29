@@ -9,7 +9,7 @@ import MyAppointments from "./pages/MyAppointments.jsx"
 import Appointment from "./pages/Appointment.jsx"
 import Navbar from "./components/Navbar.jsx"
 import Footer from "./components/Footer.jsx"
-import { ToastContainer } from 'react-toastify.jsx';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Nearby } from "./pages/Nearby.jsx"
 import { VideoMeetComponent } from "./pages/videoMeet.jsx"
