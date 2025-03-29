@@ -13,7 +13,7 @@ import { connectToSocket } from "./controllers/socketManager.js";
 import userAuth from "./middlewares/userAuth.js"; // Import user authentication middleware
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 const server = createServer(app);
 const io = connectToSocket(server);
 
